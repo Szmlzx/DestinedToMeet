@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enter</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: url('assets/background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    button {
+      padding: 20px 40px;
+      font-size: 24px;
+      background: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="goStory()">ENTER</button>
+  <script>
+    function goStory() {
+      document.body.style.filter = 'blur(2px)';
+      setTimeout(() => {
+        window.location.href = "story.html";
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

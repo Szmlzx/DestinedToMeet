@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Timeline Breach :: Gate</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: monospace;
+      text-align: center;
+      padding-top: 100px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Access Gate</h1>
+  <p>Enter the final phrase:</p>
+
+  <input type="text" id="inputPhrase" placeholder="Enter phrase">
+  <button onclick="checkPhrase()">Submit</button>
+
+  <p id="output"></p>
+
+  <script>
+    function checkPhrase() {
+      var input = document.getElementById("inputPhrase").value.toLowerCase().trim();
+      var output = document.getElementById("output");
+      var correct = "SECRET_PHRASE"; //
+
+      if (input === correct) {
+        output.innerHTML = "ACCESS GRANTED → <a href='https://your-final-video-link.com' target='_blank'>Watch Here</a>";
+      } else {
+        output.innerHTML = "::: SIGNAL CORRUPTED ::: Try again.";
+      }
+    }
+  </script>
+</body>
+</html>

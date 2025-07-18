@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Timeline Story</title>
+  <style>
+    body {
+      margin: 50px;
+      background: black;
+      color: white;
+      font-family: monospace;
+      line-height: 1.6;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 24px;
+      background: white;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Timeline Breach :: Story</h1>
+  <p>
+    You must be wondering what’s been happening for the past month. So consider this your explanation.
+    I am not the Tani you know — I’m from our future.
+ It’s the 17th of June, 2035, where I am right now.
+    When I was your Tani’s age, I did the same thing — the poem, the Gmail, the code — and just sat hoping you’d solve it. But I made it too hard. In my timeline, you never found the finale.
+    I refused to accept that. So I built this broken connection to reach *you*.
+ The closer it is to your birthday, the clearer the signal.
+    That’s why you’re reading this now. So I can help you finish what all three of us once wanted.
+  </p>
+  <a class="button" href="gate.html">Proceed to the Gate</a>
+</body>
+</html>
