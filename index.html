@@ -16,6 +16,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
     }
 
     .congrats-message {
@@ -23,7 +24,8 @@
       opacity: 0.7;
       font-size: 24px;
       margin-bottom: 30px;
-      text-shadow: 1px 1px 5px black; /* Makes it readable on any bg */
+      text-shadow: 1px 1px 5px black;
+      z-index: 1;
     }
 
     .button {
@@ -35,16 +37,93 @@
       text-decoration: none;
       font-size: 20px;
       transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 1;
+      cursor: pointer;
     }
 
     .button:hover {
       opacity: 1;
       transform: scale(1.05);
     }
+
+    .glitch {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      display: none;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+    }
+
+    .glitch::before {
+      background: #00fff7;
+      mix-blend-mode: screen;
+      animation: glitchBefore 2s steps(20) forwards;
+    }
+
+    .glitch::after {
+      background: #ff0055;
+      mix-blend-mode: screen;
+      animation: glitchAfter 2s steps(20) forwards;
+    }
+
+    @keyframes glitchBefore {
+      0% { clip-path: inset(0 0 100% 0); }
+      10% { clip-path: inset(0 0 80% 0); transform: translate(-5px, -5px); }
+      20% { clip-path: inset(0 0 60% 0); transform: translate(5px, 5px); }
+      40% { clip-path: inset(0 0 40% 0); transform: translate(-5px, 5px); }
+      60% { clip-path: inset(0 0 20% 0); transform: translate(5px, -5px); }
+      80% { clip-path: inset(0 0 10% 0); transform: translate(-5px, -5px); }
+      100% { clip-path: inset(0 0 0% 0); transform: translate(0,0); }
+    }
+
+    @keyframes glitchAfter {
+      0% { clip-path: inset(100% 0 0 0); }
+      10% { clip-path: inset(80% 0 0 0); transform: translate(5px, 5px); }
+      20% { clip-path: inset(60% 0 0 0); transform: translate(-5px, -5px); }
+      40% { clip-path: inset(40% 0 0 0); transform: translate(5px, -5px); }
+      60% { clip-path: inset(20% 0 0 0); transform: translate(-5px, 5px); }
+      80% { clip-path: inset(10% 0 0 0); transform: translate(5px, 5px); }
+      100% { clip-path: inset(0% 0 0 0); transform: translate(0,0); }
+    }
   </style>
 </head>
 <body>
-  <p class="congrats-message">CONGRATULATIONS DOOVIII, you’re on the last step :)</p>
-  <a class="button" href="story.html">ENTER</a>
+  <p class="congrats-message">CONGRATULATIONS DOOVIII, you’re on your last step :)</p>
+  <button class="button" onclick="glitchAndGo()">ENTER</button>
+
+  <div class="glitch"></div>
+
+  <!-- Glitch Sound -->
+  <audio id="glitchSound" src="glitch.mp3"></audio>
+
+  <script>
+    function glitchAndGo() {
+      // Play glitch sound
+      const sound = document.getElementById('glitchSound');
+      sound.play();
+
+      // Show glitch visual
+      const glitch = document.querySelector('.glitch');
+      glitch.style.display = 'block';
+
+      // After 2 seconds, go to story
+      setTimeout(() => {
+        window.location.href = 'story.html';
+      }, 2000);
+    }
+  </script>
 </body>
 </html>
