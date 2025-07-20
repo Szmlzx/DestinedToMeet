@@ -21,20 +21,20 @@
 
     .congrats-message {
       color: black;
-      opacity: 0.8;
+      opacity: 0.95;
       font-size: 28px;
       margin-bottom: 20px;
-      text-shadow: 1px 1px 3px white;
+      text-shadow: 2px 2px 5px white, -2px -2px 5px white;
       z-index: 1;
     }
 
     .body-message {
       color: black;
-      opacity: 0.8;
+      opacity: 0.95;
       font-size: 18px;
       max-width: 600px;
       margin-bottom: 30px;
-      text-shadow: 1px 1px 3px white;
+      text-shadow: 2px 2px 5px white, -2px -2px 5px white;
       z-index: 1;
     }
 
@@ -42,13 +42,14 @@
       background: transparent;
       border: 2px solid black;
       color: black;
-      opacity: 0.8;
+      opacity: 0.95;
       padding: 12px 30px;
       text-decoration: none;
       font-size: 20px;
       transition: opacity 0.3s ease, transform 0.3s ease;
       z-index: 1;
       cursor: pointer;
+      text-shadow: 2px 2px 5px white, -2px -2px 5px white;
     }
 
     .button:hover {
@@ -74,7 +75,6 @@
   <button class="button" onclick="playGlitch()">ENTER</button>
 
   <video class="glitch-video" id="glitchVideo" src="glitchvideoindexcut.mp4"></video>
-  <audio id="glitchSound" src="glitch.mp3"></audio>
 
   <script>
     function playGlitch() {
@@ -86,16 +86,12 @@
       video.style.display = 'block';
       video.play();
 
-      const sound = document.getElementById('glitchSound');
-      sound.play();
-
       video.onended = function() {
-        sound.pause();
         window.location.href = 'story.html';
       };
     }
 
-    // Countdown logic inside the main message
+    // Countdown logic inside body text
     const bodyMessageEl = document.getElementById('bodyMessage');
     const targetDate = new Date('2025-08-03T00:00:00');
 
