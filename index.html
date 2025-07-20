@@ -1,35 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Hey There</title>
+  <meta charset="UTF-8" />
+  <title>Destined To Meet</title>
   <style>
     body {
-      margin: 0;
-      height: 100vh;
       background: url('background.jpg') no-repeat center center fixed;
       background-size: cover;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      height: 100vh;
+      margin: 0;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
     }
-    button {
-      padding: 20px 40px;
+
+    .congrats-message {
+      color: white;
+      opacity: 0.7;
       font-size: 24px;
-      background: white;
-      border: none;
-      cursor: pointer;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 5px black; /* Makes it readable on any bg */
+    }
+
+    .button {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      opacity: 0.7;
+      padding: 12px 30px;
+      text-decoration: none;
+      font-size: 20px;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .button:hover {
+      opacity: 1;
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
-  <button onclick="goStory()">ENTER</button>
-  <script>
-    function goStory() {
-      document.body.style.filter = 'blur(2px)';
-      setTimeout(() => {
-        window.location.href = "story.html";
-      }, 1000);
-    }
-  </script>
+  <p class="congrats-message">CONGRATULATIONS DOOVIII, you’re on the last step :)</p>
+  <a class="button" href="story.html">ENTER</a>
 </body>
 </html>
