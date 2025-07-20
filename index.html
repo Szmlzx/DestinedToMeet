@@ -46,83 +46,37 @@
       transform: scale(1.05);
     }
 
-    .glitch {
+    .glitch-video {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
       z-index: 2;
       display: none;
-    }
-
-    .glitch::before,
-    .glitch::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-    }
-
-    .glitch::before {
-      background: #00fff7;
-      mix-blend-mode: screen;
-      animation: glitchBefore 2s steps(20) forwards;
-    }
-
-    .glitch::after {
-      background: #ff0055;
-      mix-blend-mode: screen;
-      animation: glitchAfter 2s steps(20) forwards;
-    }
-
-    @keyframes glitchBefore {
-      0% { clip-path: inset(0 0 100% 0); }
-      10% { clip-path: inset(0 0 80% 0); transform: translate(-5px, -5px); }
-      20% { clip-path: inset(0 0 60% 0); transform: translate(5px, 5px); }
-      40% { clip-path: inset(0 0 40% 0); transform: translate(-5px, 5px); }
-      60% { clip-path: inset(0 0 20% 0); transform: translate(5px, -5px); }
-      80% { clip-path: inset(0 0 10% 0); transform: translate(-5px, -5px); }
-      100% { clip-path: inset(0 0 0% 0); transform: translate(0,0); }
-    }
-
-    @keyframes glitchAfter {
-      0% { clip-path: inset(100% 0 0 0); }
-      10% { clip-path: inset(80% 0 0 0); transform: translate(5px, 5px); }
-      20% { clip-path: inset(60% 0 0 0); transform: translate(-5px, -5px); }
-      40% { clip-path: inset(40% 0 0 0); transform: translate(5px, -5px); }
-      60% { clip-path: inset(20% 0 0 0); transform: translate(-5px, 5px); }
-      80% { clip-path: inset(10% 0 0 0); transform: translate(5px, 5px); }
-      100% { clip-path: inset(0% 0 0 0); transform: translate(0,0); }
     }
   </style>
 </head>
 <body>
   <p class="congrats-message">CONGRATULATIONS DOOVIII, you’re on your last step :)</p>
-  <button class="button" onclick="glitchAndGo()">ENTER</button>
+  <button class="button" onclick="playGlitch()">ENTER</button>
 
-  <div class="glitch"></div>
-
-  <!-- Glitch Sound -->
-  <audio id="glitchSound" src="glitch.mp3"></audio>
+  <video class="glitch-video" id="glitchVideo" src="glitchvideoindexcut.mp4"></video>
 
   <script>
-    function glitchAndGo() {
-      // Play glitch sound
-      const sound = document.getElementById('glitchSound');
-      sound.play();
+    function playGlitch() {
+      // Hide normal elements
+      document.querySelector('.congrats-message').style.display = 'none';
+      document.querySelector('.button').style.display = 'none';
 
-      // Show glitch visual
-      const glitch = document.querySelector('.glitch');
-      glitch.style.display = 'block';
+      // Play glitch video
+      const video = document.getElementById('glitchVideo');
+      video.style.display = 'block';
+      video.play();
 
-      // After 2 seconds, go to story
-      setTimeout(() => {
+      // When video ends, jump to story
+      video.onended = function() {
         window.location.href = 'story.html';
-      }, 2000);
+      };
     }
   </script>
 </body>
