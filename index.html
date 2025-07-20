@@ -7,7 +7,7 @@
     body {
       background: url('background.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: white;
+      color: black;
       font-family: Arial, sans-serif;
       text-align: center;
       height: 100vh;
@@ -20,19 +20,29 @@
     }
 
     .congrats-message {
-      color: white;
-      opacity: 0.7;
-      font-size: 24px;
+      color: black;
+      opacity: 0.8;
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px white;
+      z-index: 1;
+    }
+
+    .body-message {
+      color: black;
+      opacity: 0.8;
+      font-size: 18px;
+      max-width: 600px;
       margin-bottom: 30px;
-      text-shadow: 1px 1px 5px black;
+      text-shadow: 1px 1px 3px white;
       z-index: 1;
     }
 
     .button {
       background: transparent;
-      border: 2px solid white;
-      color: white;
-      opacity: 0.7;
+      border: 2px solid black;
+      color: black;
+      opacity: 0.8;
       padding: 12px 30px;
       text-decoration: none;
       font-size: 20px;
@@ -58,26 +68,46 @@
 </head>
 <body>
   <p class="congrats-message">CONGRATULATIONS DOOVIII, you’re on your last step :)</p>
+  <p class="body-message" id="bodyMessage">
+    You’ve made it so far my smart little cookie, only a few days left. I am so proud of you my love.
+  </p>
   <button class="button" onclick="playGlitch()">ENTER</button>
 
   <video class="glitch-video" id="glitchVideo" src="glitchvideoindexcut.mp4"></video>
+  <audio id="glitchSound" src="glitch.mp3"></audio>
 
   <script>
     function playGlitch() {
-      // Hide normal elements
       document.querySelector('.congrats-message').style.display = 'none';
+      document.querySelector('.body-message').style.display = 'none';
       document.querySelector('.button').style.display = 'none';
 
-      // Play glitch video
       const video = document.getElementById('glitchVideo');
       video.style.display = 'block';
       video.play();
 
-      // When video ends, jump to story
+      const sound = document.getElementById('glitchSound');
+      sound.play();
+
       video.onended = function() {
+        sound.pause();
         window.location.href = 'story.html';
       };
     }
+
+    // Countdown logic inside the main message
+    const bodyMessageEl = document.getElementById('bodyMessage');
+    const targetDate = new Date('2025-08-03T00:00:00');
+
+    function updateMessage() {
+      const now = new Date();
+      const diff = targetDate - now;
+      const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+      bodyMessageEl.textContent = `You’ve made it so far my smart little cookie, only ${days} days left. I am so proud of you my love.`;
+    }
+
+    updateMessage();
+    setInterval(updateMessage, 60 * 60 * 1000); // update every hour
   </script>
 </body>
 </html>
