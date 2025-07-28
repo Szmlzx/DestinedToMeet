@@ -1,37 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>A Long Time Hence</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transmission Story</title>
   <style>
-    body {
-      margin: 50px;
-      background: black;
-      color: white;
-      font-family: monospace;
-      line-height: 1.6;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    .button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 12px 24px;
-      background: white;
-      color: black;
-      text-decoration: none;
-      font-weight: bold;
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    #videoContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      z-index: 1000;
+    }
+
+    #errorVideo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #storyPage {
+      display: none;
+      position: relative;
+      height: 100%;
+      background: url('backgroundstory.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow-y: auto;
+      padding: 40px;
+      color: white;
+    }
+
+    .story-text {
+      max-width: 800px;
+      margin: 100px auto;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      font-size: 1.4rem;
     }
   </style>
 </head>
 <body>
-  <h1>A Long time Hence</h1>
-  <p>
-    You must be wondering what’s been happening for the past month. That's why I hacked your Tani's website to send this message through.
-    I am not the Tani you know — I’m from our future.
- It’s the 17th of June, 2035, where I am right now.
-    When I was your Tani’s age, I did the same thing — the poem, the Gmail — and just sat hoping you’d solve it. But I made it too hard. In my timeline, you never found the finale.
-    I refused to accept that. So I built this broken connection to reach *you*.
- The closer it is to your birthday, the clearer the signal.
-    That’s why you’re reading this now, and I couldn't cotact you earlier. So I can help you finish what all three of us once wanted.
-  </p>
-  <a class="button" href="darwaja.html">Proceed to the Gate</a>
+
+<div id="videoContainer">
+  <video id="errorVideo" autoplay>
+    <source src="error.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<div id="storyPage">
+  <div class="story-text">
+    <p><strong>Transmission Established.</strong></p>
+    <p>The signal is weak... but it’s reaching through the chaos. The time is near.</p>
+    <p>This is where everything changes, where memories merge with code, and love becomes legacy. What happens next—only you can decide.</p>
+    <!-- Add more story here -->
+  </div>
+</div>
+
+<script>
+  const video = document.getElementById('errorVideo');
+  const videoContainer = document.getElementById('videoContainer');
+  const storyPage = document.getElementById('storyPage');
+
+  video.addEventListener('ended', () => {
+    videoContainer.style.display = 'none';
+    storyPage.style.display = 'block';
+    document.body.style.overflow = 'auto';
+  });
+</script>
+
 </body>
 </html>
