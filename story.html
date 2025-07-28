@@ -1,129 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>A Long Time Hence</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: url("backgroundstory.jpg") no-repeat center center fixed;
+      margin: 50px;
+      background: black url('backgroundstory') no-repeat center center fixed;
       background-size: cover;
-      color: black;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-      overflow: hidden;
+      color: white;
+      font-family: monospace;
+      line-height: 1.6;
     }
-
-    #videoContainer {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-      z-index: 1000;
-    }
-
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    #content {
-      display: none;
-      max-width: 90%;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      text-align: center;
-      z-index: 1;
-      position: relative;
-    }
-
-    a {
+    .button {
       display: inline-block;
-      margin-top: 20px;
-      font-size: 18px;
-      text-decoration: none;
+      margin-top: 30px;
+      padding: 12px 24px;
+      background: white;
       color: black;
-      border: 1px solid black;
-      padding: 10px 20px;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-
-    a:hover {
-      background: black;
-      color: white;
-    }
-
-    #fallback {
-      display: none;
-      position: absolute;
-      bottom: 30px;
-      font-size: 14px;
-      color: white;
+      text-decoration: none;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-
-  <div id="videoContainer">
-    <video id="introVideo" autoplay muted playsinline>
-      <source src="error.mp4" type="video/mp4" />
-    </video>
-    <div id="fallback">Tap anywhere to continue...</div>
-  </div>
-
-  <div id="content">
-    <h1>A Long time Hence</h1>
-    <p>
-      You must be wondering what’s been happening for the past month. That's why I hacked your Tani's website to send this message through.<br><br>
-      I am not the Tani you know — I’m from our future.<br>
-      It’s the 17th of June, 2035, where I am right now.<br><br>
-      When I was your Tani’s age, I did the same thing — the poem, the Gmail — and just sat hoping you’d solve it. But I made it too hard. In my timeline, you never found the finale.<br><br>
-      I refused to accept that. So I built this broken connection to reach you.<br>
-      The closer it is to your birthday, the clearer the signal.<br><br>
-      That’s why you’re reading this now, and I couldn't contact you earlier. So I can help you finish what all three of us once wanted.
-    </p>
-    <a href="darwaza.html">Continue →</a>
-  </div>
-
-  <script>
-    const video = document.getElementById('introVideo');
-    const content = document.getElementById('content');
-    const videoContainer = document.getElementById('videoContainer');
-    const fallback = document.getElementById('fallback');
-
-    let fallbackTriggered = false;
-
-    // On video end
-    video.addEventListener('ended', () => {
-      videoContainer.style.display = 'none';
-      content.style.display = 'block';
-    });
-
-    // Fallback for autoplay block
-    setTimeout(() => {
-      if (!video.played || video.currentTime < 0.5) {
-        fallback.style.display = 'block';
-        fallbackTriggered = true;
-      }
-    }, 1500);
-
-    document.addEventListener('click', () => {
-      if (fallbackTriggered) {
-        videoContainer.style.display = 'none';
-        content.style.display = 'block';
-      }
-    });
-  </script>
-
+  <h1>A Long time Hence</h1>
+  <p>
+    You must be wondering what’s been happening for the past month. That's why I hacked your Tani's website to send this message through.
+    I am not the Tani you know — I’m from our future.
+ It’s the 17th of June, 2035, where I am right now.
+    When I was your Tani’s age, I did the same thing — the poem, the Gmail — and just sat hoping you’d solve it. But I made it too hard. In my timeline, you never found the finale.
+    I refused to accept that. So I built this broken connection to reach you.
+ The closer it is to your birthday, the clearer the signal.
+    That’s why you’re reading this now, and I couldn't contact you earlier. So I can help you finish what all three of us once wanted.
+  </p>
+  <a class="button" href="darwaja.html">Proceed to the Gate</a>
 </body>
 </html>
