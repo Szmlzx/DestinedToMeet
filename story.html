@@ -3,130 +3,127 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Transmission Story</title>
+  <title>A Long Time Hence</title>
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
+      background: url("backgroundstory.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: black;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
       overflow: hidden;
-      font-family: 'Courier New', Courier, monospace;
-      background: black;
-      color: white;
     }
 
     #videoContainer {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       background: black;
-      z-index: 999;
+      z-index: 1000;
     }
 
-    #errorVideo {
+    video {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    #storyPage {
+    #content {
       display: none;
-      height: 100%;
-      background: url('backgroundstory.jpg') no-repeat center center fixed;
-      background-size: cover;
-      overflow-y: auto;
-      padding: 40px;
-    }
-
-    .story-box {
-      max-width: 700px;
-      margin: 100px auto;
-      background: rgba(0, 0, 0, 0.75);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.6);
-    }
-
-    .story-box h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    .story-box p {
-      font-size: 1.3rem;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .continue-btn {
-      margin-top: 30px;
-      display: inline-block;
-      padding: 12px 24px;
-      font-size: 1.2rem;
-      color: white;
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 1px solid white;
+      max-width: 90%;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 10px;
-      text-decoration: none;
-      transition: background 0.3s ease;
+      text-align: center;
+      z-index: 1;
+      position: relative;
     }
 
-    .continue-btn:hover {
-      background-color: white;
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 18px;
+      text-decoration: none;
       color: black;
+      border: 1px solid black;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      background: black;
+      color: white;
+    }
+
+    #fallback {
+      display: none;
+      position: absolute;
+      bottom: 30px;
+      font-size: 14px;
+      color: white;
     }
   </style>
 </head>
 <body>
 
-<!-- Fullscreen video that plays once -->
-<div id="videoContainer">
-  <video id="errorVideo" autoplay>
-    <source src="error.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
+  <div id="videoContainer">
+    <video id="introVideo" autoplay muted playsinline>
+      <source src="error.mp4" type="video/mp4" />
+    </video>
+    <div id="fallback">Tap anywhere to continue...</div>
+  </div>
 
-<!-- Story content -->
-<div id="storyPage">
-  <div class="story-box">
+  <div id="content">
     <h1>A Long time Hence</h1>
     <p>
-      You must be wondering what’s been happening for the past month. That's why I hacked your Tani's website to send this message through.
-      I am not the Tani you know — I’m from our future.
-      It’s the 17th of June, 2035, where I am right now.
-    </p>
-    <p>
-      When I was your Tani’s age, I did the same thing — the poem, the Gmail — and just sat hoping you’d solve it. But I made it too hard. In my timeline, you never found the finale.
-    </p>
-    <p>
-      I refused to accept that. So I built this broken connection to reach you.
-      The closer it is to your birthday, the clearer the signal.
-    </p>
-    <p>
+      You must be wondering what’s been happening for the past month. That's why I hacked your Tani's website to send this message through.<br><br>
+      I am not the Tani you know — I’m from our future.<br>
+      It’s the 17th of June, 2035, where I am right now.<br><br>
+      When I was your Tani’s age, I did the same thing — the poem, the Gmail — and just sat hoping you’d solve it. But I made it too hard. In my timeline, you never found the finale.<br><br>
+      I refused to accept that. So I built this broken connection to reach you.<br>
+      The closer it is to your birthday, the clearer the signal.<br><br>
       That’s why you’re reading this now, and I couldn't contact you earlier. So I can help you finish what all three of us once wanted.
     </p>
-    <a class="continue-btn" href="darwaza.html">Continue →</a>
+    <a href="darwaza.html">Continue →</a>
   </div>
-</div>
 
-<script>
-  const video = document.getElementById('errorVideo');
-  const container = document.getElementById('videoContainer');
-  const story = document.getElementById('storyPage');
+  <script>
+    const video = document.getElementById('introVideo');
+    const content = document.getElementById('content');
+    const videoContainer = document.getElementById('videoContainer');
+    const fallback = document.getElementById('fallback');
 
-  video.addEventListener('ended', () => {
-    container.style.display = 'none';
-    story.style.display = 'block';
-    document.body.style.overflow = 'auto';
-  });
-</script>
+    let fallbackTriggered = false;
+
+    // On video end
+    video.addEventListener('ended', () => {
+      videoContainer.style.display = 'none';
+      content.style.display = 'block';
+    });
+
+    // Fallback for autoplay block
+    setTimeout(() => {
+      if (!video.played || video.currentTime < 0.5) {
+        fallback.style.display = 'block';
+        fallbackTriggered = true;
+      }
+    }, 1500);
+
+    document.addEventListener('click', () => {
+      if (fallbackTriggered) {
+        videoContainer.style.display = 'none';
+        content.style.display = 'block';
+      }
+    });
+  </script>
 
 </body>
 </html>
