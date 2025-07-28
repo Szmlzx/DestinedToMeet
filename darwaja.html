@@ -1,47 +1,97 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Final Gate</title>
+  <title>Darwaja</title>
   <style>
     body {
-      background: black;
+      margin: 0;
+      padding: 0;
+      background: url('backgroundgate.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: white;
       font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
       text-align: center;
-      padding-top: 100px;
     }
-    input {
+    #passwordSection, #videoSection {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 10px;
+    }
+    input[type="password"] {
       padding: 10px;
       font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      margin-right: 10px;
     }
     button {
-      padding: 10px;
+      padding: 10px 20px;
       font-size: 16px;
-      margin-left: 10px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    video {
+      max-width: 90vw;
+      max-height: 80vh;
+      margin-top: 20px;
+    }
+    #tooSoon {
+      margin-top: 20px;
+      color: #ccc;
+      font-style: italic;
     }
   </style>
 </head>
 <body>
-  <h1>Access Gate</h1>
-  <p>Enter the final phrase:</p>
 
-  <input type="text" id="inputPhrase" placeholder="Enter phrase">
-  <button onclick="checkPhrase()">Submit</button>
+  <div id="passwordSection">
+    <h2>Enter the final phrase to unlock the gate</h2>
+    <input type="password" id="passInput" placeholder="Enter passphrase..." />
+    <button onclick="checkPassword()">Enter</button>
+    <p id="wrongPass" style="color: red; display: none; margin-top: 10px;">Wrong passphrase. Try again.</p>
+  </div>
 
-  <p id="output"></p>
+  <div id="videoSection" style="display: none;">
+    <h2>This is the moment...</h2>
+    <div id="videoContainer" style="display: none;">
+      <video id="finalVideo" controls>
+        <source src="finalpoem.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <p id="tooSoon">The gate opens only on August 3rd. Come back then.</p>
+  </div>
 
   <script>
-    function checkPhrase() {
-      var input = document.getElementById("inputPhrase").value.toLowerCase().trim();
-      var output = document.getElementById("output");
-      var correct = "I Love You Doovi"; //
+    function checkPassword() {
+      const input = document.getElementById("passInput").value;
+      const correct = "NAMEiloveyou";
+      const now = new Date();
+      const unlockTime = new Date("2025-08-03T00:00:00+05:30");
 
       if (input === correct) {
-        output.innerHTML = "ACCESS GRANTED → <a href='https://your-final-video-link.com' target='_blank'>Watch Here</a>";
+        document.getElementById("passwordSection").style.display = "none";
+        document.getElementById("videoSection").style.display = "block";
+
+        if (now >= unlockTime) {
+          document.getElementById("videoContainer").style.display = "block";
+          document.getElementById("tooSoon").style.display = "none";
+          document.getElementById("finalVideo").play();
+        } else {
+          document.getElementById("tooSoon").style.display = "block";
+        }
       } else {
-        output.innerHTML = "::: SIGNAL CORRUPTED ::: Try again.";
+        document.getElementById("wrongPass").style.display = "block";
       }
     }
   </script>
+
 </body>
 </html>
