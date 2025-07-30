@@ -25,16 +25,36 @@
 <body>
   <h1>A Long time Hence</h1>
   <p>
-    Hey there Dhruvi!!
-    I am not exactly yout Tani, as i am from our future.
-    Its currently 29th of july 2035 from where I am from.
-    You must be wondering what is happening for the past month, that's why I hacked your Tani's website for this explanation.
-    So lets start by what happened with me , when I was your Tani’s age I did the same thing , made the poem and the gmail , and just sat and hoped that you would find all the answers.
-    But foolish me made it so hard that you were never able to solve it , so in my timeline you never received the finale.
-    Thats when I thought that I wont accept this that easily, I came up with this broken mechanism to communicate to YOU reading this right now.
-    Its like the closer the time is to your birthday the clearer the frequency of the connection thats why these messages that you’re reading aren’t distorted like before and that’s also the reason why I wasn’t able to talk before.
-    That's why I helped you to achive what the four of us once wanted.
+    Hey there Dhruvi!!<br>
+    I am not exactly your Tani, as I am from our future.<br>
+    <span id="futureDate">It's currently loading... from where I am from.</span><br>
+    You must be wondering what is happening for the past month, that's why I hacked your Tani's website for this explanation.<br>
+    So let's start by what happened with me. When I was your Tani’s age I did the same thing, made the poem and the Gmail, and just sat and hoped that you would find all the answers.<br>
+    But foolish me made it so hard that you were never able to solve it, so in my timeline you never received the finale.<br>
+    That's when I thought that I won’t accept this that easily, I came up with this broken mechanism to communicate to YOU reading this right now.<br>
+    It’s like the closer the time is to your birthday the clearer the frequency of the connection , that’s why these messages that you’re reading aren’t distorted like before and that’s also the reason why I wasn’t able to talk before.<br>
+    I want to help achieve what the four of us once wanted.<br>
+    If I want to tell you something now, I’d write it here...
   </p>
   <a class="button" href="darwaja.html">Proceed to the Gate</a>
+
+  <script>
+    const months = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+
+    function getOrdinal(n) {
+      const s = ["th", "st", "nd", "rd"],
+            v = n % 100;
+      return n + (s[(v - 20) % 10] || s[v] || s[0]);
+    }
+
+    const today = new Date();
+    const futureYear = today.getFullYear() + 10;
+    const futureDate = `${getOrdinal(today.getDate())} ${months[today.getMonth()]} ${futureYear}`;
+
+    document.getElementById("futureDate").innerText = `It's currently ${futureDate} from where I am from.`;
+  </script>
 </body>
 </html>
