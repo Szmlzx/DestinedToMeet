@@ -37,10 +37,15 @@
       border-radius: 5px;
       cursor: pointer;
     }
-    video {
-      max-width: 90vw;
-      max-height: 80vh;
+    a.video-link {
+      display: inline-block;
       margin-top: 20px;
+      padding: 12px 24px;
+      background-color: white;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 5px;
     }
     #tooSoon {
       margin-top: 20px;
@@ -60,11 +65,8 @@
 
   <div id="videoSection" style="display: none;">
     <h2>This is the moment...</h2>
-    <div id="videoContainer" style="display: none;">
-      <video id="finalVideo" controls>
-        <source src="finalpoem.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+    <div id="linkContainer" style="display: none;">
+      <a class="video-link" href="https://youtu.be/EbYs8CdDaPg?si=AKsMU8KXM8y6dPUK" target="_blank">Click here to watch the video</a>
     </div>
     <p id="tooSoon">The gate opens only on August 3rd. Come back then.</p>
   </div>
@@ -74,16 +76,15 @@
       const input = document.getElementById("passInput").value;
       const correct = "ourhandsfitperfectly";
       const now = new Date();
-      const unlockTime = new Date("2025-08-02T00:00:00+05:30");
+      const unlockTime = new Date("2025-08-03T00:00:00+05:30");
 
       if (input === correct) {
         document.getElementById("passwordSection").style.display = "none";
         document.getElementById("videoSection").style.display = "block";
 
         if (now >= unlockTime) {
-          document.getElementById("videoContainer").style.display = "block";
+          document.getElementById("linkContainer").style.display = "block";
           document.getElementById("tooSoon").style.display = "none";
-          document.getElementById("finalVideo").play();
         } else {
           document.getElementById("tooSoon").style.display = "block";
         }
@@ -95,4 +96,3 @@
 
 </body>
 </html>
-
